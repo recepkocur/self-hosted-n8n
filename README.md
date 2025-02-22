@@ -1,4 +1,4 @@
-# SELF-HOSTED-N8N
+# SELF-HOSTED-N8N-DOCKER
 
 Bu proje, Docker konteyner orchestration platformu üzerinde Traefik reverse proxy kullanılarak deploy edilmiştir. Traefik, otomatik SSL sertifikası yönetimi ve routing özellikleri sağlar.
 
