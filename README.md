@@ -1,6 +1,6 @@
 # SELF-HOSTED-N8N-DOCKER
 
-Bu proje, Docker konteyner orchestration platformu üzerinde Traefik reverse proxy kullanılarak deploy edilmiştir. Traefik, otomatik SSL sertifikası yönetimi ve routing özellikleri sağlar.
+Bu proje, n8n iş akışı otomasyon platformunun Docker üzerinde self-hosted olarak çalıştırılması için gerekli yapılandırmaları içerir. Traefik reverse proxy ile SSL sertifika yönetimi ve güvenli routing sağlanmaktadır.
 
 # n8n Nedir?
 
@@ -66,25 +66,14 @@ docker compose up -d
 
 # Kullanışlı Komutlar
 
-```bash
-# Servisleri yeniden başlatma
-make restart
-
-# Servisleri durdurma
-make down
-
-# Docker sistem temizliği
-make clean
-
-# n8n loglarını görüntüleme
-make log
-
-# İzin sorunlarını düzeltme
-make fix
-
-# Çalışan konteynerleri listeleme
-make ps
-```
+| Komut          | Açıklama                                                  |
+| -------------- | --------------------------------------------------------- |
+| `make restart` | Tüm servisleri yeniden başlatır ve n8n loglarını gösterir |
+| `make down`    | Tüm servisleri durdurur                                   |
+| `make clean`   | Kullanılmayan Docker kaynaklarını temizler                |
+| `make log`     | n8n servisinin canlı loglarını gösterir                   |
+| `make fix`     | Volume dizinlerinin izin sorunlarını düzeltir             |
+| `make ps`      | Çalışan konteynerlerin durumunu listeler                  |
 
 # Notlar
 
@@ -101,3 +90,19 @@ Bu değişiklikler projenin:
 - Veri yedekleme özelliği ekler
 - Güvenlik önlemlerini vurgular
 - Kullanıcı deneyimini iyileştirir
+
+# CI/CD
+
+Proje, GitHub Actions ile otomatik deployment sürecine sahiptir. Master branch'e yapılan her push işleminden sonra:
+
+- VPS sunucuya otomatik deployment yapılır
+- Docker servisleri yeniden başlatılır
+- Eski Docker image'ları temizlenir
+
+Deployment için gerekli secret'lar:
+
+- SSH_PRIVATE_KEY
+- SSH_PORT
+- SSH_HOST
+- SSH_USERNAME
+- SSH_PATH
