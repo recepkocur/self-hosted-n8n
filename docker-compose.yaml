@@ -13,11 +13,11 @@ services:
       - traefik.http.middlewares.redirect.redirectscheme.scheme=${N8N_PROTOCOL}
       - traefik.http.services.app-n8n.loadbalancer.server.port=${N8N_PORT}
     environment:
-      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=true
+      - N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS=${N8N_ENFORCE_SETTINGS_FILE_PERMISSIONS}
       - N8N_HOST=${N8N_HOST}
       - N8N_PROTOCOL=${N8N_PROTOCOL}
       - NODE_ENV=production
-      - WEBHOOK_URL=https://${N8N_HOST}/
+      - WEBHOOK_URL=${N8N_PROTOCOL}://${N8N_HOST}/
       - GENERIC_TIMEZONE=Europe/Istanbul
       - TZ=Europe/Istanbul
     volumes:
@@ -30,4 +30,3 @@ networks:
     driver: bridge
     external: true
     name: proxy
-
